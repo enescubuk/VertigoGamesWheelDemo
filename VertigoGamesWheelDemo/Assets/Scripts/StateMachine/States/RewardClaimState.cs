@@ -6,7 +6,7 @@ public class RewardClaimState : IStateCommand
 {
     public override void Enter()
     {
-        
+        Debug.Log("RewardClaimState");
     }
 
     public override void Tick()

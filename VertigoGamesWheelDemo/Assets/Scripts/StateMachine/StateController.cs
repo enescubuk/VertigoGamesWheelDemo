@@ -11,7 +11,6 @@ public class StateController : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Opsiyonel: Sahne değişikliklerinde yok olmaması için.
         }
         else if (Instance != this)
         {
@@ -21,7 +20,7 @@ public class StateController : MonoBehaviour
 
     private void Start() 
     {// Oyun başladığında varsayılan durumu ayarlamak için kullanılır.
-        CurrentState = GetComponent<IdleState>();
+        ChangeState<IdleState>();
     }
 
     public void ChangeState<T>() where T : IStateCommand

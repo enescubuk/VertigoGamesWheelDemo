@@ -6,7 +6,7 @@ public class BombExplodedState : IStateCommand
 {
     public override void Enter()
     {
-        
+        Debug.Log("BombExplodedState");
     }
 
     public override void Tick()
