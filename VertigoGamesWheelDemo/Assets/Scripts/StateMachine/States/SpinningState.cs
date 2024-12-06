@@ -17,14 +17,14 @@ public class SpinningState : IStateCommand
         StartCoroutine(SpinCoroutine());
     }
 
-    public override void Tick()
+    public override void Tick() 
     {
-        // Döngüsel işler varsa buraya eklenebilir
+        
     }
 
-    public override void Exit()
+    public override void Exit() 
     {
-        Debug.Log("Spinning Finished");
+
     }
 
     private IEnumerator SpinCoroutine()
@@ -32,26 +32,39 @@ public class SpinningState : IStateCommand
         isSpinning = true;
         float elapsedTime = 0f;
         float currentAngle = 0f;
-        targetAngle = Random.Range(360, 360 * 5); // Çark 5 kez dönecek ve rastgele bir yerde duracak.
+        targetAngle = Random.Range(360, 360 * 5);
 
         while (elapsedTime < spinDuration)
         {
             float speed = Mathf.Lerp(maxSpinSpeed, 0, elapsedTime / spinDuration);
-            float deltaAngle = speed * Time.deltaTime;
-            currentAngle += deltaAngle;
+            currentAngle += speed * Time.deltaTime;
             WheelTransform.localRotation = Quaternion.Euler(0, 0, -currentAngle);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        float _targetAngle = Mathf.RoundToInt(WheelTransform.rotation.z / 45f) * 45;
-        WheelTransform.rotation = Quaternion.Euler(0, 0, +_targetAngle);
         isSpinning = false;
+        DetermineSlice();
     }
 
-    private void DetermineSlice(float finalAngle)
+    private void DetermineSlice()
     {
-        int sliceIndex = Mathf.FloorToInt(finalAngle / (360f / numberOfSlices)); // Direkt hangi dilimde durduğunu hesapla
-        Debug.Log("Landed on Slice: " + sliceIndex);
+        float finalAngle = (WheelTransform.localRotation.eulerAngles.z + 360) % 360;
+        float offset = (360f / numberOfSlices) / 2f;
+        int sliceIndex = Mathf.FloorToInt(((finalAngle + offset) % 360) / (360f / numberOfSlices));
+
+        Transform sliceTransform = WheelTransform.GetChild(sliceIndex);
+        SliceBehavior sliceBehavior = sliceTransform.GetComponent<SliceBehavior>();
+        SliceData sliceData = sliceBehavior.GetSliceData();
+
+        if (sliceData.Rarity == Rarity.Death)
+        {
+            Debug.Log("Death Slice! Game Over!");
+            StateController.Instance.ChangeState<BombExplodedState>();
+        }
+        else
+        {
+            StateController.Instance.ChangeState<RewardClaimState>();
+        }
     }
 }

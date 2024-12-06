@@ -8,11 +8,11 @@ public class SliceBehavior : MonoBehaviour
     public void Initialize(SliceData data)
     {
         sliceData = data;
-        transform.GetChild(0).GetComponent<Image>().sprite = sliceData.sliceSprite;
+        transform.GetChild(0).GetComponent<Image>().sprite = sliceData.SliceSprite;
     }
 
-    public string GetSliceData()
+    public SliceData GetSliceData()
     {
-        return sliceData.sliceName;
+        return sliceData;
     }
 }
