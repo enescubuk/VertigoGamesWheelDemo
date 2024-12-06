@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40b5f31b755b4914397aae72d9699edd, type: 3}
   m_Name: SliceData 3
   m_EditorClassIdentifier: 
-  sliceName: Cash
-  sliceSprite: {fileID: 21300000, guid: 6102a4c8420e4a64d844fc55e62dd546, type: 3}
-  rarity: 0
+  SliceName: Gold
+  SliceSprite: {fileID: 21300000, guid: 6e8f2f75a1aa024489e93e108b2b899b, type: 3}
+  Rarity: 0

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40b5f31b755b4914397aae72d9699edd, type: 3}
   m_Name: SliceData 6
   m_EditorClassIdentifier: 
-  sliceName: Rifle Tier2
-  sliceSprite: {fileID: 21300000, guid: 8282b161104d34b4fb087f3f65b97276, type: 3}
-  rarity: 0
+  SliceName: "Melee Knife T\u0130er2"
+  SliceSprite: {fileID: 21300000, guid: 119787c1c37d88245a922f8a04dd4cf2, type: 3}
+  Rarity: 0

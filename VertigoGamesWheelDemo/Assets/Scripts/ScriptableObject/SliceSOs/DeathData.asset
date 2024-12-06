@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40b5f31b755b4914397aae72d9699edd, type: 3}
   m_Name: DeathData
   m_EditorClassIdentifier: 
-  sliceName: Death
-  sliceSprite: {fileID: 21300000, guid: ff342b6efac129a448e01f1f8a3cc497, type: 3}
-  rarity: 3
+  SliceName: Death
+  SliceSprite: {fileID: 21300000, guid: ff342b6efac129a448e01f1f8a3cc497, type: 3}
+  Rarity: 3

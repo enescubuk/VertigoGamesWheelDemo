@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40b5f31b755b4914397aae72d9699edd, type: 3}
   m_Name: SliceData 2
   m_EditorClassIdentifier: 
-  sliceName: Baseball Cap
-  sliceSprite: {fileID: 21300000, guid: c5a93fa7b39bc7e4594f55e0df950f7e, type: 3}
-  rarity: 0
+  SliceName: Cash
+  SliceSprite: {fileID: 21300000, guid: 6102a4c8420e4a64d844fc55e62dd546, type: 3}
+  Rarity: 0

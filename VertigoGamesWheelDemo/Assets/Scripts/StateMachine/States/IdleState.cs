@@ -23,7 +23,10 @@ public class IdleState : IStateCommand
 
     public override void Tick()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SpinButtonEvent();
+        }
     }
 
     public override void Exit()
