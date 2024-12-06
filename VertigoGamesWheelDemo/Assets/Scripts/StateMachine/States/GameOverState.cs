@@ -6,7 +6,7 @@ public class GameOverState : IStateCommand
 {
     public override void Enter()
     {
-        Debug.Log("GameOverState");
+        Debug.Log(" GameOverState");
     }
 
     public override void Tick()

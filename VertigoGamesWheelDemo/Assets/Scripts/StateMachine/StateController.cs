@@ -4,6 +4,8 @@ using UnityEngine;
 public class StateController : MonoBehaviour
 {
     public IStateCommand CurrentState;
+
+    public RectTransform WheelTransform;
     private bool InTransition;
     public static StateController Instance;
     private void Awake()

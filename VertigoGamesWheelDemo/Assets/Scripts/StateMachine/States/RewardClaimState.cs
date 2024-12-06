@@ -5,18 +5,19 @@ using UnityEngine;
 public class RewardClaimState : IStateCommand
 {
     private List<SliceData> rewardedSliceDataList = new List<SliceData>();
-    [SerializeField] private RectTransform WheelTransform;
+    private RectTransform wheelTransform;
 
     public override void Enter()
     {
         Debug.Log("RewardClaimState");
+        wheelTransform = StateController.Instance.WheelTransform;
         ClaimReward();
     }
 
     private void ClaimReward()
     {
-        int sliceIndex = Mathf.FloorToInt((WheelTransform.localRotation.eulerAngles.z + 360) % 360 / (360f / WheelTransform.childCount));
-        Transform sliceTransform = WheelTransform.GetChild(sliceIndex);
+        int sliceIndex = Mathf.FloorToInt((wheelTransform.localRotation.eulerAngles.z + 360) % 360 / (360f / wheelTransform.childCount));
+        Transform sliceTransform = wheelTransform.GetChild(sliceIndex);
         SliceBehavior sliceBehavior = sliceTransform.GetComponent<SliceBehavior>();
 
         if (sliceBehavior != null)

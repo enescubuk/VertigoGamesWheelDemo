@@ -5,17 +5,18 @@ using UnityEngine.UI;
 
 public class IdleState : IStateCommand
 {
+    private RectTransform wheelTransform;
     [SerializeField] private Button SpinButton;
     [SerializeField] private GameObject slicePrefab;
     [SerializeField] private List<SliceData> sliceDataList;
     [SerializeField] private SliceData deathData; // DeathData'yı ayrı tanımladık.
     [SerializeField] private int numberOfSlices = 8;
     [SerializeField] private float radius = 235f;
-    [SerializeField] private RectTransform wheelTransform;
 
     public override void Enter()
     {
         Debug.Log("IdleState");
+        wheelTransform = StateController.Instance.WheelTransform;
         SpinButton.interactable = true;
         GenerateSlices();
     }

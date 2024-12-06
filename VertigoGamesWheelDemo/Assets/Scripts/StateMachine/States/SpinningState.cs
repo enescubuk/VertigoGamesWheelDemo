@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpinningState : IStateCommand
 {
-    [SerializeField] private RectTransform WheelTransform;
+    private RectTransform wheelTransform;
     [SerializeField] private float spinDuration = 2f;
     [SerializeField] private float maxSpinSpeed = 1000f;
     [SerializeField] private int numberOfSlices = 8;
@@ -13,6 +13,7 @@ public class SpinningState : IStateCommand
     public override void Enter()
     {
         Debug.Log("SpinningState");
+        wheelTransform = StateController.Instance.WheelTransform;
         StartCoroutine(SpinCoroutine());
     }
 
@@ -36,7 +37,7 @@ public class SpinningState : IStateCommand
         {
             float speed = Mathf.Lerp(maxSpinSpeed, 0, elapsedTime / spinDuration);
             currentAngle += speed * Time.deltaTime;
-            WheelTransform.localRotation = Quaternion.Euler(0, 0, -currentAngle);
+            wheelTransform.localRotation = Quaternion.Euler(0, 0, -currentAngle);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
@@ -47,11 +48,11 @@ public class SpinningState : IStateCommand
 
     private void DetermineSlice()
     {
-        float finalAngle = (WheelTransform.localRotation.eulerAngles.z + 360) % 360;
+        float finalAngle = (wheelTransform.localRotation.eulerAngles.z + 360) % 360;
         float offset = (360f / numberOfSlices) / 2f;
         int sliceIndex = Mathf.FloorToInt(((finalAngle + offset) % 360) / (360f / numberOfSlices));
 
-        Transform sliceTransform = WheelTransform.GetChild(sliceIndex);
+        Transform sliceTransform = wheelTransform.GetChild(sliceIndex);
         SliceBehavior sliceBehavior = sliceTransform.GetComponent<SliceBehavior>();
         SliceData sliceData = sliceBehavior.GetSliceData();
 
