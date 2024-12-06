@@ -9,7 +9,6 @@ public class SpinningState : IStateCommand
     [SerializeField] private float maxSpinSpeed = 1000f;
     [SerializeField] private int numberOfSlices = 8;
     private bool isSpinning = false;
-    private float targetAngle;
 
     public override void Enter()
     {
@@ -19,7 +18,7 @@ public class SpinningState : IStateCommand
 
     public override void Tick() 
     {
-        
+
     }
 
     public override void Exit() 
@@ -32,7 +31,6 @@ public class SpinningState : IStateCommand
         isSpinning = true;
         float elapsedTime = 0f;
         float currentAngle = 0f;
-        targetAngle = Random.Range(360, 360 * 5);
 
         while (elapsedTime < spinDuration)
         {
