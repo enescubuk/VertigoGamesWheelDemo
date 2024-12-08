@@ -30,33 +30,31 @@ public class SpinningState : IStateCommand
     private IEnumerator SpinCoroutine()
     {
         isSpinning = true;
-        float elapsedTime = 0f;
-        float currentAngle = 0f;
-
-        while (elapsedTime < spinDuration)
+        float _elapsedTime = 0f;
+        float _currentAngle = 0f;
+        while (_elapsedTime < spinDuration)
         {
-            float speed = Mathf.Lerp(maxSpinSpeed, 0, elapsedTime / spinDuration);
-            currentAngle += speed * Time.deltaTime;
-            wheelTransform.localRotation = Quaternion.Euler(0, 0, -currentAngle);
-            elapsedTime += Time.deltaTime;
+            float _speed = Mathf.Lerp(maxSpinSpeed, 0, _elapsedTime / spinDuration);
+            _currentAngle += _speed * Time.deltaTime;
+            wheelTransform.localRotation = Quaternion.Euler(0, 0, -_currentAngle);
+            _elapsedTime += Time.deltaTime;
             yield return null;
         }
-
         isSpinning = false;
         DetermineSlice();
     }
 
     private void DetermineSlice()
     {
-        float finalAngle = (wheelTransform.localRotation.eulerAngles.z + 360) % 360;
-        float offset = (360f / numberOfSlices) / 2f;
-        int sliceIndex = Mathf.FloorToInt(((finalAngle + offset) % 360) / (360f / numberOfSlices));
+        float _finalAngle = (wheelTransform.localRotation.eulerAngles.z + 360) % 360;
+        float _offset = (360f / numberOfSlices) / 2f;
+        int _sliceIndex = Mathf.FloorToInt(((_finalAngle + _offset) % 360) / (360f / numberOfSlices));
 
-        Transform sliceTransform = wheelTransform.GetChild(sliceIndex);
-        SliceBehavior sliceBehavior = sliceTransform.GetComponent<SliceBehavior>();
-        SliceData sliceData = sliceBehavior.GetSliceData();
+        Transform _sliceTransform = wheelTransform.GetChild(_sliceIndex);
+        SliceBehavior _sliceBehavior = _sliceTransform.GetComponent<SliceBehavior>();
+        SliceData _sliceData = _sliceBehavior.GetSliceData();
 
-        if (sliceData.Rarity == Rarity.Death)
+        if (_sliceData.Rarity == Rarity.Death)
         {
             Debug.Log("Death Slice! Game Over!");
             StateController.Instance.ChangeState<BombExplodedState>();

@@ -4,7 +4,6 @@ using UnityEngine;
 public class StateController : MonoBehaviour
 {
     public IStateCommand CurrentState;
-
     public RectTransform WheelTransform;
     private bool InTransition;
     public static StateController Instance;
@@ -22,7 +21,7 @@ public class StateController : MonoBehaviour
 
     private void Start() 
     {// Oyun başladığında varsayılan durumu ayarlamak için kullanılır.
-        ChangeState<IdleState>();
+        ChangeState<WaitingPurchaseState>();
     }
 
     public void ChangeState<T>() where T : IStateCommand

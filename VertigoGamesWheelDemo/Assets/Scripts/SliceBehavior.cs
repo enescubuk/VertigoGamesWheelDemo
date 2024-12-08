@@ -5,9 +5,9 @@ public class SliceBehavior : MonoBehaviour
 {
     private SliceData sliceData;
 
-    public void Initialize(SliceData data)
+    public void Initialize(SliceData _data)
     {
-        sliceData = data;
+        sliceData = _data;
         transform.GetChild(0).GetComponent<Image>().sprite = sliceData.SliceSprite;
     }
 
